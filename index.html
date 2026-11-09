@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141b2b">
+  <title>ナメしか通信4周年記念 お便り大賞</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="hero"><div class="wrap">
+    <p class="eyebrow">4TH ANNIVERSARY</p>
+    <h1>ナメしか通信 お便り大賞</h1>
+    <p>歴代のお便り(384件)から厳選しました。面白いと思った投稿を最大3件選んでください。</p>
+    <div class="notice">お便りの表示順はアクセスするたびにランダムになります。投票対象はすべて同じです。</div>
+  </div></header>
+  <main class="wrap">
+    <section class="anniversary-invite" aria-labelledby="anniversary-title">
+      <div class="anniversary-copy">
+        <h2 id="anniversary-title">4周年記念のお便りも募集中！</h2>
+      </div>
+      <div class="anniversary-action">
+        <a id="anniversary-form-link" class="anniversary-link" href="#" target="_blank" rel="noopener noreferrer" hidden>お便りを投稿する <span aria-hidden="true">↗</span></a>
+        <p id="anniversary-form-pending" class="anniversary-pending">募集フォームのリンクは準備中です</p>
+      </div>
+    </section>
+    <section class="toolbar" aria-label="お便りを探す">
+      <label class="search">キーワード検索 <input id="search" type="search" placeholder="本文・投稿者名・番号で検索"></label>
+      <label>並び順 <select id="sort"><option value="random">ランダム順</option><option value="id">番号順</option></select></label>
+      <p id="count" class="muted" aria-live="polite"></p>
+    </section>
+    <section id="letters" class="letters" aria-label="お便り一覧"></section>
+    <p id="empty" class="empty" hidden>該当するお便りがありません。</p>
+  </main>
+  <aside class="vote-bar" aria-label="投票候補">
+    <div class="wrap vote-inner">
+      <div class="vote-summary"><strong>選択中 <span id="selected-count">0</span> / 3件</strong><div id="selected-list" class="selected-list">候補を選んでね</div></div>
+      <button id="vote-button" disabled>投票に進む</button>
+    </div>
+  </aside>
+  <dialog id="vote-dialog">
+    <div class="dialog-content">
+      <form method="dialog"><button class="close" aria-label="閉じる">×</button></form>
+      <h2>投票内容を確認</h2>
+      <p id="vote-preview"></p>
+      <p id="vote-help" class="muted"></p>
+      <div class="dialog-actions"><button id="copy-button" type="button" class="secondary">番号をコピー</button><a id="form-link" target="_blank" rel="noopener noreferrer" class="button" hidden>Googleフォームを開く</a></div>
+    </div>
+  </dialog>
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      var url = window.AWARD_CONFIG && window.AWARD_CONFIG.anniversaryFormUrl;
+      var link = document.getElementById("anniversary-form-link");
+      var pending = document.getElementById("anniversary-form-pending");
+      if (typeof url === "string" && /^https:\/\//i.test(url.trim())) {
+        link.href = url.trim();
+        link.hidden = false;
+        pending.hidden = true;
+      }
+    });
+  </script>
+  <footer class="wrap footer">投票期間などの詳細は配信の案内をご確認ください。</footer>
+</body>
+</html>
